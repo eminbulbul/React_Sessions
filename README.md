@@ -1,2 +1,2 @@
-# React_Sessions
-react in class sessions
+# React Session Class-notes
+
