@@ -1,7 +1,8 @@
+import Person from "./components/Person.Jsx";
 function App() {
   return (
     <div>
-      <h1>hello React</h1>
+      <Person />
     </div>
   );
 }
