@@ -1,6 +1,9 @@
 import "./styles.css";
-
+import { useState } from "react";
 const MouseEvents = () => {
+  const [coordX, setCoordX] = useState();
+  const [coordY, setCoordY] = useState();
+  console.log("coordX", coordX);
   // click event
   const handleClick = (e) => {
     // console.log(e);
@@ -11,12 +14,20 @@ const MouseEvents = () => {
   };
 
   // doubleClick event
+  const handleDoubleClick = (e) => console.log("innerText", e.target.innerText);
   // mouseMove event
+
+  const handleMouseMove = (e) => {
+    // console.log(e.nativeEvent.offsetX);
+    // console.log(e.pageX);
+    setCoordX(e.pageX);
+    setCoordY(e.pageY);
+  };
   return (
     <>
       <h2>MouseEvents</h2>
       <p>
-        <span>X</span> and Y
+        <span>X {coordX}</span> and Y {coordY}
       </p>
       <p>
         <span></span> and
@@ -26,10 +37,10 @@ const MouseEvents = () => {
           <li id="todo-1" onClick={handleClick}>
             todo item 1 <span>X</span>
           </li>
-          <li id="todo-2 ">
+          <li id="todo-2 " onDoubleClick={handleDoubleClick}>
             todo item 2 <span>X</span>
           </li>
-          <li>
+          <li onMouseMove={handleMouseMove}>
             todo item 3 <span>X</span>
           </li>
           <li>
