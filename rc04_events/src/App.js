@@ -1,6 +1,8 @@
 import "./App.css";
-import Form from "./components/form/Form";
 // import AddEvents from "./components/addEvents/AddEvents";
+import EventBind from "./components/eventBinding/EventBind";
+// import Form from "./components/form/Form";
+// import KeyboardEvents from "./components/keyboardEvents/KeyboardEvents";
 // import MouseEvents from "./components/mouseEvents/MouseEvents";
 
 function App() {
@@ -9,7 +11,9 @@ function App() {
       <h1>Events in React Js</h1>
       {/* <AddEvents /> */}
       {/* <MouseEvents /> */}
-      <Form />
+      {/* <Form /> */}
+      {/* <KeyboardEvents /> */}
+      <EventBind />
     </div>
   );
 }
