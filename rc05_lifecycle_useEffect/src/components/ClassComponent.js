@@ -10,10 +10,16 @@ class ClassComponent extends React.Component {
   increase = () => this.setState({ count: this.state.count + 1 })
   // increase = () => this.setState({ name: 'Emin' })
 
-  //! component olustuktan sonra gerceklesekcek eylem
+  //! component olustuktan sonra gerceklesecek eylem - Didmount sadece bir kere calisir(ilk olusmada)
   componentDidMount() {
     console.log('Class Comp Mounted')
     // this.increase()
+  }
+  //! componenet guncellendiginde gerceklesecek eylem
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('Class componenet updated')
+    console.log(prevState.count)
+    prevState.count !== this.state.count && console.log('Class componenet updated')
   }
 
   render() {
