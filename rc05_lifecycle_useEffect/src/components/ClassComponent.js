@@ -21,6 +21,10 @@ class ClassComponent extends React.Component {
     console.log(prevState.count)
     prevState.count !== this.state.count && console.log('Class componenet updated')
   }
+  //! Component oldugunde gerceklesecek islem
+  componentWillUnmount() {
+    alert('Class Comp Will Unmount Bye Bye')
+  }
 
   render() {
     console.log('Class Comp Rendered!')
