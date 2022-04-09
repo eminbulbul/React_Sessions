@@ -1,14 +1,17 @@
 import React from "react";
 import Product from "./Product";
 
-const ProductList = ({ products }) => {
-  console.log(products);
+const ProductList = ({ products, increasePrice, decreasePrice }) => {
   return (
     <div>
       {products.map((product) => (
-        <Product key={product.id} product={product} />
+        <Product
+          key={product.id}
+          product={product}
+          increasePrice={increasePrice}
+          decreasePrice={decreasePrice}
+        />
       ))}
-      <Product />
     </div>
   );
 };
