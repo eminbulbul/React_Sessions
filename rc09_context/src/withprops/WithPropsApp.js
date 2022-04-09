@@ -2,9 +2,9 @@ import React from "react";
 import { useState } from "react";
 import ProductList from "./ProductList";
 const initialProducts = [
-  { products: "Basketball", price: 12.99 },
-  { products: "Baseball", price: 9.99 },
-  { products: "Tennis Racquet", price: 89.99 },
+  { id: 1, products: "Basketball", price: 12.99 },
+  { id: 2, products: "Baseball", price: 9.99 },
+  { id: 3, products: "Tennis Racquet", price: 89.99 },
 ];
 
 const WithPropsApp = () => {
