@@ -1,0 +1,12 @@
+.product-list{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.card{
+    width: 252px;
+    height: 250px;
+}
+.shirt{
+    font-size: 7rem;
+}
