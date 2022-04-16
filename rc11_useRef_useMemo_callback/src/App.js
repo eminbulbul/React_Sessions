@@ -1,11 +1,11 @@
-import ReactDom from "react-dom";
-import UseRefComponent from "./components/UseRefComponent";
+// import UseRefComponent from "./components/UseRefComponent";
+import ReactMemo from "./ReactMemo";
 
 function App() {
   return (
     <div className="App">
       {/* <UseRefComponent /> */}
-      <ReactDom />
+      <ReactMemo />
     </div>
   );
 }
