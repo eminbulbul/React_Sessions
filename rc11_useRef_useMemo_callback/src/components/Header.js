@@ -1,9 +1,13 @@
 import React from "react";
-
-const Header = () => {
+import cw from "../assets/cw_logo.png";
+const Header = ({ img }) => {
   return (
-    <div>
-      <h2>Header</h2>
+    <div className="header">
+      <img
+        src={img ? img : cw}
+        alt="cw logo"
+        style={{ margin: "1rem", maxHeight: "200px" }}
+      />
     </div>
   );
 };
