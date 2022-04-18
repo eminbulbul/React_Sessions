@@ -1,6 +1,5 @@
-// import UseRefComponent from "./components/UseRefComponent";
-// import ReactMemo from "./ReactMemo";
-
+import UseRefComponent from "./components/UseRefComponent";
+import ReactMemo from "./ReactMemo";
 import UseMemoCallBack from "./UseMemoCallBack";
 
 function App() {
