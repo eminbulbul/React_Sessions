@@ -7,8 +7,11 @@ import Typography from "@mui/material/Typography";
 import { CardMedia } from "@mui/material";
 import axios from "axios";
 import { useEffect } from "react";
+import { setLoading, clearLoading } from "../redux/actions/appActions";
+import { useDispatch } from "react-redux";
 
 const News = () => {
+  const dispatch = useDispatch();
   const url =
     "https://newsapi.org/v2/everything?" +
     "q=Apple&" +
@@ -17,8 +20,15 @@ const News = () => {
     "apiKey=21a2766150ee4e478b04e78ea671016f";
 
   const getNews = async () => {
-    const { data } = await axios.get(url);
-    console.log(data.articles);
+    try {
+      dispatch(setLoading());
+      const { data } = await axios.get(url);
+      console.log(data.artciles);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch(clearLoading());
+    }
   };
 
   useEffect(() => {
