@@ -9,6 +9,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { setLoading, clearLoading } from "../redux/actions/appActions";
 import { useDispatch } from "react-redux";
+import { setNewsList } from "../redux/actions/newsActions";
 
 const News = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const News = () => {
     try {
       dispatch(setLoading());
       const { data } = await axios.get(url);
-      console.log(data.artciles);
+      dispatch(setNewsList(data.articles));
     } catch (error) {
       console.log(error);
     } finally {
