@@ -8,11 +8,12 @@ import { CardMedia } from "@mui/material";
 import axios from "axios";
 import { useEffect } from "react";
 import { setLoading, clearLoading } from "../redux/actions/appActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setNewsList } from "../redux/actions/newsActions";
 
 const News = () => {
   const dispatch = useDispatch();
+  const { newsList } = useSelector((state) => state.news);
   const url =
     "https://newsapi.org/v2/everything?" +
     "q=Apple&" +
@@ -44,7 +45,7 @@ const News = () => {
       justifyContent="space-evenly"
       flexWrap="wrap"
     >
-      {[1, 2, 3, 4].map((item, index) => (
+      {newsList.map((item, index) => (
         <Card sx={{ maxWidth: 345, m: 5, maxHeight: 600 }} key={index}>
           <CardMedia
             component="img"

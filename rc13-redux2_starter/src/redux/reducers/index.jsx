@@ -5,8 +5,8 @@ import newsReducer from "./newsReducer";
 
 const rootReducer = combineReducers({
   app: appReducer,
-  //   auth: authReducer,
   news: newsReducer,
+  //   auth: authReducer,
 });
 
 export default rootReducer;
