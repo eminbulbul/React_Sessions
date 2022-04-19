@@ -10,70 +10,88 @@ import { useEffect } from "react";
 import { setLoading, clearLoading } from "../redux/actions/appActions";
 import { useDispatch, useSelector } from "react-redux";
 import { setNewsList } from "../redux/actions/newsActions";
+import loadingGif from "../assets/loading (1).gif";
+import { getNews } from "../redux/thunk/newsThunk";
 
 const News = () => {
   const dispatch = useDispatch();
   const { newsList } = useSelector((state) => state.news);
-  const url =
-    "https://newsapi.org/v2/everything?" +
-    "q=Apple&" +
-    "from=2022-04-18&" +
-    "sortBy=popularity&" +
-    "apiKey=21a2766150ee4e478b04e78ea671016f";
+  const { loading } = useSelector((state) => state.app);
 
-  const getNews = async () => {
-    try {
-      dispatch(setLoading());
-      const { data } = await axios.get(url);
-      dispatch(setNewsList(data.articles));
-    } catch (error) {
-      console.log(error);
-    } finally {
-      dispatch(clearLoading());
-    }
-  };
+  // const url =
+  //   "https://newsapi.org/v2/everything?" +
+  //   "q=Apple&" +
+  //   "from=2022-04-18&" +
+  //   "sortBy=popularity&" +
+  //   "apiKey=21a2766150ee4e478b04e78ea671016f";
+
+  // const getNews = async () => {
+  //   try {
+  //     dispatch(setLoading());
+  //     const { data } = await axios.get(url);
+  //     dispatch(setNewsList(data.articles));
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     dispatch(clearLoading());
+  //   }
+  // };
 
   useEffect(() => {
-    getNews();
+    dispatch(getNews);
   }, []);
 
   return (
-    <Box
-      xs={{ d: "flex" }}
-      display="flex"
-      alignItems="center"
-      justifyContent="space-evenly"
-      flexWrap="wrap"
-    >
-      {newsList.map((item, index) => (
-        <Card sx={{ maxWidth: 345, m: 5, maxHeight: 600 }} key={index}>
-          <CardMedia
-            component="img"
-            height="250"
-            image={
-              item?.urlToImage ??
-              "https://ichef.bbci.co.uk/news/976/cpsprodpb/5A8B/production/_122497132_tesla.png"
-            }
-            alt="img"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {item?.title ?? "Tesla disables gaming while driving feature"}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {item?.content ??
-                "It follows an inquiry into Passenger Play, which allowed games to be played while a car was moving."}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small" href={item?.url} target="_blank">
-              Detail
-            </Button>
-          </CardActions>
-        </Card>
-      ))}
-    </Box>
+    <>
+      {loading && (
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height="50vh"
+        >
+          <img src={loadingGif} alt="gif" width="50%" height="500px" />
+        </Box>
+      )}
+      {!loading && (
+        <Box
+          xs={{ d: "flex" }}
+          display="flex"
+          alignItems="center"
+          justifyContent="space-evenly"
+          flexWrap="wrap"
+        >
+          {newsList.map((item, index) => (
+            <Card sx={{ maxWidth: 345, m: 5, maxHeight: 600 }} key={index}>
+              <CardMedia
+                component="img"
+                height="250"
+                image={
+                  item?.urlToImage ??
+                  "https://ichef.bbci.co.uk/news/976/cpsprodpb/5A8B/production/_122497132_tesla.png"
+                }
+                alt="img"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {item?.title ?? "Tesla disables gaming while driving feature"}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {item?.content ??
+                    "It follows an inquiry into Passenger Play, which allowed games to be played while a car was moving."}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small">Share</Button>
+                <Button size="small" href={item?.url} target="_blank">
+                  Detail
+                </Button>
+              </CardActions>
+            </Card>
+          ))}
+        </Box>
+      )}
+    </>
   );
 };
 
