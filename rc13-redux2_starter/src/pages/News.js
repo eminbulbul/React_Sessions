@@ -5,13 +5,13 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CardMedia } from "@mui/material";
-import axios from "axios";
 import { useEffect } from "react";
-import { setLoading, clearLoading } from "../redux/actions/appActions";
 import { useDispatch, useSelector } from "react-redux";
-import { setNewsList } from "../redux/actions/newsActions";
-import loadingGif from "../assets/loading (1).gif";
+import loadingGif from "../assets/loading.gif";
 import { getNews } from "../redux/thunk/newsThunk";
+// import { setLoading, clearLoading } from "../redux/actions/appActions";
+// import { setNewsList } from "../redux/actions/newsActions";
+// import axios from "axios";
 
 const News = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const News = () => {
   //   "q=Apple&" +
   //   "from=2022-04-18&" +
   //   "sortBy=popularity&" +
-  //   "apiKey=21a2766150ee4e478b04e78ea671016f";
+  //   "apiKey=02d142c50d8b4247b974b25323435174";
 
   // const getNews = async () => {
   //   try {
@@ -38,8 +38,8 @@ const News = () => {
   // };
 
   useEffect(() => {
-    dispatch(getNews);
-  }, []);
+    dispatch(getNews());
+  }, [dispatch]);
 
   return (
     <>
@@ -48,9 +48,9 @@ const News = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          height="50vh"
+          height="100vh"
         >
-          <img src={loadingGif} alt="gif" width="50%" height="500px" />
+          <img src={loadingGif} alt="gif" width="90%" height="800px" />
         </Box>
       )}
       {!loading && (
@@ -61,24 +61,20 @@ const News = () => {
           justifyContent="space-evenly"
           flexWrap="wrap"
         >
-          {newsList.map((item, index) => (
+          {newsList?.map((item, index) => (
             <Card sx={{ maxWidth: 345, m: 5, maxHeight: 600 }} key={index}>
               <CardMedia
                 component="img"
                 height="250"
-                image={
-                  item?.urlToImage ??
-                  "https://ichef.bbci.co.uk/news/976/cpsprodpb/5A8B/production/_122497132_tesla.png"
-                }
+                image={item?.urlToImage}
                 alt="img"
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  {item?.title ?? "Tesla disables gaming while driving feature"}
+                  {item?.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {item?.content ??
-                    "It follows an inquiry into Passenger Play, which allowed games to be played while a car was moving."}
+                  {item?.content}
                 </Typography>
               </CardContent>
               <CardActions>
